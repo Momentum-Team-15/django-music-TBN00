@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from music import views
+from django.conf import settings
+from django.conf.urls.static import static
+from music.views import Images
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +29,11 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')),
     path('album/<int:pk>/', views.album_detail, name='album_detail'),
     path('album/edit/<int:pk>', views.album_edit, name='album_edit'),
+    path('album/delete/<int:pk>', views.album_delete, name='album_delete'),
+    path('', Images.as_view()),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

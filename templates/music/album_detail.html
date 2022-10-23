@@ -5,8 +5,12 @@
 <h1>Album Details:</h1>
 <p>Album Name: {{ album.title }}</p> 
 <p>Artist Name: {{ album.artist }}</p>
+<p>{{ album.song }}</p>
+<img src="{{ album.cover.url }}">
+<br>
 
 <a href="{% url 'album_edit' pk=album.pk %}">Edit</a>
 
+<a href="{% url 'album_delete' pk=album.pk %}">Delete</a>
 
 {% endblock %}
