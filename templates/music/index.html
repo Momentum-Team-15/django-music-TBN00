@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <h1>Albums:</h1>
 
 <div class="page">
@@ -11,5 +10,6 @@
     </div>
     {% endfor %}
 </div>
+<a href="{% url 'create_album' %}">Add Album</a>
 
 {% endblock %}

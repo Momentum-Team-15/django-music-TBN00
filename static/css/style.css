@@ -9,6 +9,8 @@ body {
 }
 
 .albums{
+    display: flex;
+    justify-content: center;
     background-color: cadetblue;
     margin: 5px;
     padding: 5px;

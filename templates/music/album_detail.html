@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<a href="{% url 'home' %}">Home</a>
 <h1>Album Details:</h1>
 <p>Album Name: {{ album.title }}</p> 
 <p>Artist Name: {{ album.artist }}</p>
+
+<a href="{% url 'album_edit' pk=album.pk %}">Edit</a>
 
 
 {% endblock %}
