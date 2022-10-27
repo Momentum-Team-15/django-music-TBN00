@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView
-from .models import Album
+from .models import Album, Favorite, User
 from music.forms import AlbumForm
 
 
 # Create your views here.
 def index(request):
-    all_albums = Album.objects.all()
+    all_albums = Album.objects.all().order_by('title')
     return render(request, 'music/index.html', {'albums': all_albums})
 
 def album_detail(request, pk):
@@ -46,3 +46,19 @@ def album_delete(request, pk):
 class Images(ListView):
     model = Album
     template_name = 'base.html'
+
+def add_favorite(request, res_pk):
+    album = get_object_or_404(Album, pk=res_pk)
+    unfavorited = False
+    for favorite in request.user.favorites.all():
+        if album == favorite.album:
+            favorite.delete()
+            unfavorited = True
+    if not unfavorited:
+        favorite = Favorite.objects.create(album=album, user=request.user)
+        favorite.save()
+    return redirect("home")
+
+def favorite(request):
+    favorited = Favorite.objects.all().order_by('-created_at')
+    return render(request, 'music/favorites.html', {'favorited': favorited})

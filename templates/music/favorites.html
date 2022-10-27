@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'home' %}">Home</a>
+<br>
+<br>
+
+<div class="page">
+{% for fav in favorited %}
+<div class="albums">
+    <img class="images" src="{{ fav.album.cover.url }}">
+    <p>{{ fav.album.title }}</p>
+    <p>{{ fav.album.artist }}</p>
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

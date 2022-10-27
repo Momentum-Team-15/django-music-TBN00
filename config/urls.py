@@ -31,6 +31,8 @@ urlpatterns = [
     path('album/edit/<int:pk>', views.album_edit, name='album_edit'),
     path('album/delete/<int:pk>', views.album_delete, name='album_delete'),
     path('', Images.as_view()),
+    path('favorites/new/<int:res_pk>', views.add_favorite, name='favorite'),
+    path('favorites/', views.favorite, name='favorite_page'),
 ]
 
 if settings.DEBUG:
